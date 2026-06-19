@@ -36,3 +36,24 @@ EKS Cluster on AWS is on 3 types:
     1) Public Cluster ( Accessible from the internet and communication from master-node is via public )
     2) Public Private Cluster ( Accessible from the internet & communication from master-node is private )
     3) Private Cluster ( Cannot be accessible from internet, master-node communication is internal )
+
+A kubernetes cluster will have multiple nodegroups / nodepools
+
+    What is a nodeGroup ?
+        A nodeGroup is nothing but a group of similar instances.
+
+How to connect to the cluster after provisioning ?
+    aws eks update-kubeconfig --region <region-code> --name <cluster-name>
+
+What is kube-config ?
+    This is a file that containers the cluster info along with authenticationInfo that enables you to connect to the cluster and the location of it in "~/.kube/config"
+
+You need a "kubectl" client package installed on your workStation and then only you can connect to cluster.
+
+How to install kubectl ?
+       $ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+       $ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+       $ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+       $ kubectl version --client
+
+    Ref: https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
