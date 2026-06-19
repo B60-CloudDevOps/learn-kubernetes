@@ -57,3 +57,19 @@ How to install kubectl ?
        $ kubectl version --client
 
     Ref: https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/
+
+All the interaction to kubernetes will be done with "kubectl"
+
+How do I know the cluster info that I am connect to ?
+    $ kubectl cluster-info
+        Kubernetes control plane is running at https://xxxxxxxx.gr7.us-east-1.eks.amazonaws.com
+        CoreDNS is running at https://xxxxxxxx.gr7.us-east-1.eks.amazonaws.com/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+        To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+
+# What is the syntax of kubectl commands?
+    $ kubectl action resource
+
+# Kubernetes config file will have lot of contexts, how do we know the current context of your kube config ?
+    $ kubectl config current-context
+        arn:aws:eks:us-east-1:xxxxxxxx:cluster/example
