@@ -75,7 +75,6 @@ How do I know the cluster info that I am connect to ?
         arn:aws:eks:us-east-1:xxxxxxxx:cluster/example
 
 # How to generate the context of the cluster:
-
     $ aws eks update-kubeconfig --region us-east-1 --name 
     ( You can check the generated file in ~/.kube/config )
 
@@ -105,3 +104,11 @@ How can I enter in to the pod ?
     $ kubectl exec -it podName -- bash or -- sh  
 
 ( In few of the cases, you also see SHELL Less Containers )
+
+# What is namespace in kubernetes ?
+    Namespace is a perimeter inside kubernetes cluster   
+
+Kubernetes has these namespaces by default:
+    default: The standard target for any resource created without an explicitly declared namespace.
+    kube-system: Reserved strictly for control plane components and infrastructure systems managed by Kubernetes (e.g., API server, CoreDNS).
+    kube-public: Accessible by all authenticated and unauthenticated users; typically holds cluster-wide discovery metadata.
