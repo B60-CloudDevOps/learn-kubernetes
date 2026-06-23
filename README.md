@@ -100,3 +100,8 @@ How to create a pod manually ? Not Recommended!
 How to create or upcate pod with code ?
     $ kubectl create -f fileName.yml ( Just creates if it's not there )
     $ kubectl apply -f fileName.yml ( Creates if it's not there, updates if that's already available )
+
+How can I enter in to the pod ?
+    $ kubectl exec -it podName -- bash or -- sh  
+
+( In few of the cases, you also see SHELL Less Containers )
