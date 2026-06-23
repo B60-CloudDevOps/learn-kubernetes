@@ -73,3 +73,30 @@ How do I know the cluster info that I am connect to ?
 # Kubernetes config file will have lot of contexts, how do we know the current context of your kube config ?
     $ kubectl config current-context
         arn:aws:eks:us-east-1:xxxxxxxx:cluster/example
+
+# How to generate the context of the cluster:
+
+    $ aws eks update-kubeconfig --region us-east-1 --name 
+    ( You can check the generated file in ~/.kube/config )
+
+There are lots of resources in kubernetes, among all POD is smallest computing resource where our workloads are scheduled.
+
+You can create resources on kubernetes either manually or with YAML ( Declarative Format )
+    We always prefer creating k8s resource using CODE only
+
+KUBERNETES is all about API's: 
+    Based on the type of resource you create, we use the approprivate API.
+
+    $ kubectl cluster-info
+
+This shows the list of resources that can be created on the cluster
+    
+    $ kubectl api-resources
+
+How to create a pod manually ? Not Recommended!
+    $ kubectl run <pod-name> --image=<image-name>
+    $ kubectl run welcomepod --image=nginx:latest
+
+How to create or upcate pod with code ?
+    $ kubectl create -f fileName.yml ( Just creates if it's not there )
+    $ kubectl apply -f fileName.yml ( Creates if it's not there, updates if that's already available )
