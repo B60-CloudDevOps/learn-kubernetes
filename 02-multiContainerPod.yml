@@ -11,3 +11,4 @@ spec:
     - containerPort: 80
   - name: debian-c2
     image: debian:latest
+    command: ["sleep", "600"]
