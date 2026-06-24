@@ -19,6 +19,6 @@ spec:
     spec:
       containers:
       - name: nginx-apps
-        image: nginx:1.31.2-otel
+        image: nginx:1.31.2-perl
   strategy:
     type: Recreate
