@@ -129,8 +129,8 @@ In applications, we don't create pods directly and we do t using SETS.
     We create a SET and that set will create the pod.   
 
 SETS in kubernetes are of 4 types :
-    1) Replicas Set   : This ensure, at any point of time, the given number of replicas are running all the time
-    2) Deployment Set : This ensure, at any point of time, the given number of replicas are running all the time & allows the deployment from one version to another version
+    1) Replicas Set   : This ensure, at any point of time, the given number of replicas are running all the time.
+    2) Deployment Set : This ensure, at any point of time, the given number of replicas are running all the time & allows the deployment from one version to another version.
     3) Stateful Set
     4) Daemon Set  
 
@@ -139,3 +139,8 @@ SETS in kubernetes are of 4 types :
 
     But this is temporary, when reapply the manifest file used to create the resource, this will swtich back to the properties mentioned in the .yaml
     
+
+Application Deployment Types:
+    1) Rolling Deployment       
+    2) Blue Green Deployment
+    3) Canary Deployment
