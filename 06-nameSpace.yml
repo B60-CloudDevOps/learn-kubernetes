@@ -1,6 +1,19 @@
-# create namespace roboshop
+# creates namespace roboshop
 apiVersion: v1
 kind: Namespace
 metadata:
   name: roboshop
 
+--- 
+# creates a pod named nginx in the roboshop namespace
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  namespace: roboshop
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    ports:
+    - containerPort: 80
