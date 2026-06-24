@@ -110,5 +110,5 @@ How can I enter in to the pod ?
 
 Kubernetes has these namespaces by default:
     default: The standard target for any resource created without an explicitly declared namespace.
-    kube-system: Reserved strictly for control plane components and infrastructure systems managed by Kubernetes (e.g., API server, CoreDNS).
+    kube-system: Reserved strictly for control plane components and infrastructure systems managed by Kubernetes (e.g., API server, CoreDNS)
     kube-public: Accessible by all authenticated and unauthenticated users; typically holds cluster-wide discovery metadata.

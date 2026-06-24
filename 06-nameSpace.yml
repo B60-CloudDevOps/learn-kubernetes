@@ -1,0 +1,6 @@
+# create namespace roboshop
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: roboshop
+
