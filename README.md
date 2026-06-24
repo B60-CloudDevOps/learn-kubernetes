@@ -112,3 +112,24 @@ Kubernetes has these namespaces by default:
     default: The standard target for any resource created without an explicitly declared namespace.
     kube-system: Reserved strictly for control plane components and infrastructure systems managed by Kubernetes (e.g., API server, CoreDNS)
     kube-public: Accessible by all authenticated and unauthenticated users; typically holds cluster-wide discovery metadata.
+
+# By default, everything will be queried against the default namespace.
+
+How to list the resources from a specific namespace? 
+    $ kubectl get pods -n nameSpaceName
+
+
+# What are the some of the basic & must realtime application useCases? 
+    1) Whenever you're releasing a new verison of your app from v1 to v2, it should happen smoothly by deleting the olv version v1 and creating the new version v2.
+
+    2) If I want some app like payment to run 5 instances all the time, the expection is, even if someone or something deletes these, they come up automatically. 
+
+In applications, we don't create pods directly and we do t using SETS.
+
+    We create a SET and that set will create the pod.   
+
+SETS in kubernetes are of 4 types :
+    1) Replicas Set   : This ensure, at any point of time, the given number of replicas are running all the time
+    2) Deployment Set : This ensure, at any point of time, the given number of replicas are running all the time & allows the deployment from one version to another version
+    3) Stateful Set
+    4) Daemon Set  

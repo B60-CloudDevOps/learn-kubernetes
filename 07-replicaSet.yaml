@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: frontend
+  labels:                           # Labels to the ReplicaSet
+    app: roboshop
+    tier: frontend
+spec:                               # Spec of the pods created by the ReplicaSet
+  # modify replicas according to your case
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        tier: frontend
+    spec:                            # Spec of the pods created by the ReplicaSet
+      containers:
+      - name: nginx-apps
+        image: nginx:1.14.2
