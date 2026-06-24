@@ -133,3 +133,9 @@ SETS in kubernetes are of 4 types :
     2) Deployment Set : This ensure, at any point of time, the given number of replicas are running all the time & allows the deployment from one version to another version
     3) Stateful Set
     4) Daemon Set  
+
+# How to scale the replicaSet manually ?
+     $ kc scale rs frontend --replicas=15  
+
+    But this is temporary, when reapply the manifest file used to create the resource, this will swtich back to the properties mentioned in the .yaml
+    

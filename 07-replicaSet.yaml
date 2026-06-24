@@ -7,7 +7,7 @@ metadata:
     tier: frontend
 spec:                               # Spec of the pods created by the ReplicaSet
   # modify replicas according to your case
-  replicas: 3
+  replicas: 5
   selector:
     matchLabels:
       tier: frontend
