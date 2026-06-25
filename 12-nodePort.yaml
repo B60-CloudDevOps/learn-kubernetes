@@ -1,0 +1,41 @@
+# create a nodeport service that listens on 31000 of node that forwards the requests to port 81 on pods
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-svc
+  namespace: roboshop
+spec:
+  selector:
+    tier: frontend
+  ports:
+    - protocol: TCP
+      port: 80                 # Internal Service accepts the requests on this port ; frontend-svc:80 
+      targetPort: 80           # Target port in the pods
+      nodePort: 31000          # Node port        nodeIP:31000 
+  type: NodePort
+
+--- 
+# create a deployment with httpd image which should be attached to the above nodeport service
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: roboshop
+    tier: frontend
+spec:
+  # modify replicas according to your case
+  replicas: 3
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        tier: frontend
+    spec:
+      containers:
+      - name: httpd-apps
+        image: httpd:latest      #apache webservice
+        ports:
+          - containerPort: 80
