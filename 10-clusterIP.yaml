@@ -48,15 +48,43 @@ metadata:
   name: roboshop
   
 --- 
-# creates a pod named nginx in the roboshop namespace
-apiVersion: v1
-kind: Pod
+# create deployment with nginx as image in roboshop namespace
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: nginx-pod
+  name: frontend
+  namespace: roboshop
+  labels:
+    app: roboshop
+    tier: frontend
+spec:
+  # modify replicas according to your case
+  replicas: 5
+  selector:
+    matchLabels:
+      tier: frontend
+  template:
+    metadata:
+      labels:
+        tier: frontend
+    spec:
+      containers:
+      - name: nginx-apps
+        image: nginx:1.31.2-perl
+
+
+--- 
+# create clusterIP service
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-svc
   namespace: roboshop
 spec:
-  containers:
-  - name: nginx
-    image: nginx:1.14.2
-    ports:
-    - containerPort: 80
+  selector:
+    tier: frontend
+  ports:
+    - protocol: TCP
+      port: 80                 # Service accepts the requests on this port
+      targetPort: 80           # Target port in the pods
+  type: ClusterIP              # Service type; if you don't mention, it by default is ClusterIP
