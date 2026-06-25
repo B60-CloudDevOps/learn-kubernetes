@@ -153,3 +153,16 @@ Application Deployment Types:
         2) LoadBalancer  : If the application is external and needs to be accessible from outside the cluster, then we use Load Balancer service, this provisions a network load balancer on aws accessble from your eks
         3) NodePort      :
         4) External Name : 
+
+What is the fully qualified domain name of the service on kuerbentes : frontend-svc ?
+
+        serviceName.svc.nameSpace.cluster.local 
+
+        if service-x wants to talk to service-y which both are in the same namespace,
+            you can access them just calling the name of the serivce.
+
+        
+        if service-x and service-y are in namespaces-x and y respectively, then we refer them using the FQDN of the service
+
+            debugger pod is in the default nameSpace, wants to access service-x svc in test namespace.
+                    "service-x.svc.default.cluster.local"
