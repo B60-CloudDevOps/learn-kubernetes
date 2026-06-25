@@ -69,9 +69,8 @@ spec:
         tier: frontend
     spec:
       containers:
-      - name: nginx-apps
-        image: nginx:1.31.2-perl
-
+      - name: httpd-apps
+        image: httpd:latest      #apache webservice
 
 --- 
 # create clusterIP service
