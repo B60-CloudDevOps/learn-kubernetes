@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-db
+  namespace: prod
+spec:
+  type: ExternalName
+  externalName: apps.testing.robosts.database.example.fun
+
+# With this, on cluster, you can access the external database using the service name `my-db`.
+
+# When to use ExternalName services
+# Services of type ExternalName map a Service to a DNS name, not to a typical selector such as my-service or cassandra.
+#You specify these Services with the spec.externalName parameter.

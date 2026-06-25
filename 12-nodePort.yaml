@@ -12,7 +12,6 @@ spec:
       targetPort: 80           # Target port in the pods
       nodePort: 31000          # Node port        nodeIP:31000 
   type: NodePort
-
 --- 
 # create a deployment with httpd image which should be attached to the above nodeport service
 apiVersion: apps/v1
