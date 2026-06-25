@@ -6,5 +6,5 @@ metadata:
 spec:
   containers:
   - name: debian-c2
-    image: debian:latest
+    image: alpine/curl:latest
     command: ["sleep", "600"]
