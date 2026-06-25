@@ -35,6 +35,6 @@ spec:
     spec:
       containers:
       - name: httpd-apps
-        image: httpd:latest      #apache webservice
+        image: nginx:latest      #apache webservice
         ports:
           - containerPort: 80
