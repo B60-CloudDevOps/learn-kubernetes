@@ -143,4 +143,13 @@ SETS in kubernetes are of 4 types :
 Application Deployment Types:
     1) Rolling Deployment       
     2) Blue Green Deployment
-    3) Canary Deployment
+    3) Canary Deployment 
+
+# How do we access the pods or apps deployed on kubernetes ?
+    SERVICES
+
+    Using services in kubrenetes we are going to access the deployed apps on kubernetes, we have 4 types of services on kubernetes.
+        1) ClusterIP     : If the application is internal and should be accessible inside the cluster, then we use cluster ip service
+        2) LoadBalancer  : If the application is external and needs to be accessible from outside the cluster, then we use Load Balancer service, this provisions a network load balancer on aws accessble from your eks
+        3) NodePort      :
+        4) External Name : 

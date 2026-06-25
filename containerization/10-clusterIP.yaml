@@ -1,0 +1,15 @@
+# Scope of the service on kubernetes cluster is with in the namespace. 
+
+# create clusterIP service
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-svc
+spec:
+  selector:
+    tier: frontend
+  ports:
+    - protocol: TCP
+      port: 80                 # Service accepts the requests on this port
+      targetPort: 80           # Target port in the pods
+  type: ClusterIP              # Service type; if you don't mention, it by default is ClusterIP
