@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-resources-demo
+  namespace: pod-resources-example
+spec:
+  resources:
+    limits:
+      cpu: "1"
+      memory: "200Mi"
+    requests:
+      cpu: "1"
+      memory: "100Mi"
+  containers:
+  - name: pod-resources-demo-ctr-1
+    image: nginx
+    resources:
+      limits:
+        cpu: "0.5"
+        memory: "100Mi"
+      requests:
+        cpu: "0.5"
+        memory: "50Mi"
+  - name: pod-resources-demo-ctr-2
+    image: fedora
+    command:
+    - sleep
+    - inf 
+
+# Pod-level resource requests and limits describe the resource needs for the entire pod,
+# representing the aggregate reservation and cap for all containers in the pod.
+# These values are used for scheduling and to determine the pod's quality of service.
+#
+# Container-level resource requests and limits apply to each container individually.
+# Kubelet enforces these per-container limits, and they determine the resources each
+# container is allowed to request and consume.
+#
+# In this example, the pod specifies limits of 1 CPU and 200Mi memory, and requests of
+# 1 CPU and 100Mi memory. The first container defines its own limits and requests of
+# 0.5 CPU/100Mi and 0.5 CPU/50Mi respectively. The second container has no explicit
+# container-level resources defined, so it does not contribute specific container-level
+# values beyond the pod-level aggregate.
+#
+# Pod-level values are conceptually different from container-level values because the pod
+# values express the total expected resource usage for the pod, while container values
+# constrain the resources for each individual container.
