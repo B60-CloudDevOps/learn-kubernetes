@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pi
+spec:
+  template:
+    spec:
+      containers:
+      - name: pi
+        image: perl:5.34.0
+        command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+      restartPolicy: Never
+  backoffLimit: 4
+
+# These two fields control two different levels of retry behavior:
+
+# restartPolicy → What Kubernetes does inside the Pod when the container exits.
+# backoffLimit → What Kubernetes does at the Job level when Pods keep failing.
+
+# | Value       | Meaning                                                                               |
+# | ----------- | ------------------------------------------------------------------------------------- |
+# | `Never`     | Never restart the container inside the same Pod.                                      |
+# | `OnFailure` | Restart the container inside the same Pod only if it exits with a non-zero exit code. |
+# | `Always`    | Always restart the container (not allowed for Jobs).                                  |

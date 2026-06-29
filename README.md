@@ -196,3 +196,8 @@ Here is how it looks when the pod has INIT Containers:
     myapp-pod   1/1     Running         0          64s
 
 ```
+
+Jobs in kubernetes :
+    Jobs is to a task; Jobs schedules a pod and pod finishes the job.
+
+    Use a Kubernetes Job for finite, one-off tasks that need to run to completion. Unlike Deployments, which keep applications running indefinitely, Jobs spawn Pods and terminate them once the workload finishes successfully.Common use cases include:Database Migrations: Running schema updates or seeding data during an application deployment.Batch Processing: Processing a defined queue of data or items.Backups and Restores: Performing point-in-time database dumps or log archiving.Clean-up Operations: Purging temporary files, clearing caches, or running
