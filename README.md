@@ -166,3 +166,22 @@ What is the fully qualified domain name of the service on kuerbentes : frontend-
 
             debugger pod is in the default nameSpace, wants to access service-x svc in test namespace.
                     "service-x.namespace.svc.cluster.local"
+
+# what is init container in Kubernetes?
+
+A Pod can have multiple containers running apps within it, but it can also have one or more init containers, which are run before the app containers are started.
+
+Init containers are exactly like regular containers, except:
+
+Init containers always run to completion.
+Each init container must complete successfully before the next one starts.
+If a Pod's init container fails, the kubelet repeatedly restarts that init container until it succeeds. However, if the Pod has a restartPolicy of Never, and an init container fails during startup of that Pod, Kubernetes treats the overall Pod as failed.
+
+Differences from sidecar containers
+Init containers run and complete their tasks before the main application container starts. Unlike sidecar containers, init containers are not continuously running alongside the main containers.
+
+Init containers run to completion sequentially, and the main container does not start until all the init containers have successfully completed.
+
+init containers do not support lifecycle, livenessProbe, readinessProbe, or startupProbe whereas sidecar containers support all these probes to control their lifecycle.
+
+Init containers share the same resources (CPU, memory, network) with the main application containers but do not interact directly with them. They can, however, use shared volumes for data exchange.
