@@ -1,0 +1,10 @@
+# # what is a daemonset and when touse ?
+# A DaemonSet is a Kubernetes controller that ensures a copy of a specific Pod runs on every single node 
+# (or a targeted subset of nodes) in your cluster. As you add new nodes to your cluster, 
+# DaemonSets automatically provision a Pod on them
+
+# Some typical uses of a DaemonSet are:
+
+  # running a cluster storage daemon on every node
+  # running a logs collection daemon on every node
+  # running a node monitoring daemon on every node
