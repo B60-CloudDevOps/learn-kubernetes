@@ -185,3 +185,14 @@ Init containers run to completion sequentially, and the main container does not 
 init containers do not support lifecycle, livenessProbe, readinessProbe, or startupProbe whereas sidecar containers support all these probes to control their lifecycle.
 
 Init containers share the same resources (CPU, memory, network) with the main application containers but do not interact directly with them. They can, however, use shared volumes for data exchange.
+
+Here is how it looks when the pod has INIT Containers:
+```
+    NAME        READY   STATUS        RESTARTS   AGE
+    myapp-pod   0/1     Init:0/2        0          24s
+    myapp-pod   0/1     Init:1/2        0          32s
+    myapp-pod   0/1     Init:1/2        0          33s
+    myapp-pod   0/1     PodInitializing 0          63s
+    myapp-pod   1/1     Running         0          64s
+
+```
