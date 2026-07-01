@@ -24,3 +24,4 @@ spec:
         path: /ready
         port: 8080
       periodSeconds: 5
+    restartPolicy: Always

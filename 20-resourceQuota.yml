@@ -1,0 +1,28 @@
+# What is a resource quota in kubernetes ?
+
+# We have one roboshop-test cluster and testing on this cluster is done by catalogue, cart, payment, shipping and user teams ( namespaces ) 
+# Each team is using the same cluster for testing their application. 
+
+# Now if we want to enforce that "Catalogue Team" to use only 50CPU and 100GB of RAM & "Cart Team" to use only 100CPU and 200GB of RAM, we can use resource quota in kubernetes.
+
+# Resource quotas are defined at namespace level and they limit the total amount of resources that can be consumed by all the pods in that namespace.
+
+# create roboshop-test namespace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: roboshop-test
+
+
+--- 
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: compute-resources
+  namespace: roboshop-test
+spec:
+  hard:
+    requests.cpu: "1"
+    requests.memory: "1Gi"
+    limits.cpu: "2"
+    limits.memory: "2Gi"
