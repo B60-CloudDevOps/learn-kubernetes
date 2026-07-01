@@ -25,3 +25,16 @@ spec:
     requests.memory: "1Gi"
     limits.cpu: "2"
     limits.memory: "2Gi"
+
+--- 
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: debugger-pod
+  namespace: roboshop-test
+spec:
+  containers:
+  - name: debian-c2
+    image: alpine/curl:latest
+    command: ["sleep", "600"]
