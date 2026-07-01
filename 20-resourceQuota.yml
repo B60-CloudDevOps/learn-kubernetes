@@ -13,7 +13,6 @@ kind: Namespace
 metadata:
   name: roboshop-test
 
-
 --- 
 apiVersion: v1
 kind: ResourceQuota
