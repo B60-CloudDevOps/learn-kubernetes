@@ -69,3 +69,25 @@ spec:
       limits:
         memory: "128Mi"
         cpu: "500m"
+
+# Error from server (Forbidden): error when creating "20-resourceQuota.yml": 
+#pods "frontend" is forbidden: exceeded quota: compute-resources, requested: limits.cpu=32500m,limits.memory=16512Mi,requests.cpu=16250m,requests.memory=8256Mi, used: limits.cpu=0,limits.memory=0,requests.cpu=0,requests.memory=0, limited: limits.cpu=2,limits.memory=2Gi,requests.cpu=1,requests.memory=1Gi
+
+--- 
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: backend
+  namespace: roboshop-test
+spec:
+  containers:
+  - name: app
+    image: nginx
+    resources:
+      requests:
+        memory: "0.1Gi"
+        cpu: "0.2"
+      limits:
+        memory: "0.1Gi"
+        cpu: "0.4"
