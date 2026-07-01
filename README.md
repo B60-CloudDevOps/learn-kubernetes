@@ -224,4 +224,23 @@ Liveness, Readiness, and Startup Probes
 
         With these probes, READINESS PROBES, we can enable a health check endPoint and ask kubernetes to check them & only sends the traffic if the container starts application.
 
-        
+# What is Pod-Priority & Pre-emption ?
+
+Kubernetes cluster has x amount of resources and if that's been used by 3 teams:
+    Payment: 1st Tier Customer    ( 90% )
+    Catalogue: 2nd Tier Customer  ( 25% )
+    Cart: 3rd Tier Customer       ( 3% )
+
+    EKS Cluster : 
+        Prod Team: 1st Tier  ( pre-meption: as eviction )
+        Dev Team : 2nd Tier
+        Interns  : 3rd Tier
+
+
+Taints & Tolerations:
+
+Pod Affinity:
+I want my pods of the deployment frontend should only be scheduled on the nodes that have my payment pods running.
+
+Pod-Anti Affinity:
+I want my pods of the deployment frontend should only be scheduled on the nodes that don't have payment pods running.
