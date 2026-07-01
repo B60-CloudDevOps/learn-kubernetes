@@ -208,3 +208,20 @@ Jobs in kubernetes :
 # Kubernetes Network and the node networking are different and there are lot of CNI ( Container Networking Interfact ) :
     Popular CNI's: Calico, Weaveworks, Flanner, vpc-cni, cilium.
     
+# Probes in kubernetes:
+Liveness, Readiness, and Startup Probes
+    Kubernetes lets you define probes to continuously monitor the health of containers in a Pod. 
+    A probe is a diagnostic performed periodically by the kubelet on a container. 
+    To perform a diagnostic, the kubelet either executes code within the container or makes a network request.
+
+    Based on the probe results, Kubernetes can restart unhealthy containers or stop sending traffic to containers that are not ready.
+
+
+    Pod is coming up with containers, but container are not ready to accept the traffic.
+
+        Pod started ---> Container Started, but app in the container is not yet up or takes 100 seconds of time.
+        During this 100 seconds of time, if requests reaches that container what will happen ?
+
+        With these probes, READINESS PROBES, we can enable a health check endPoint and ask kubernetes to check them & only sends the traffic if the container starts application.
+
+        
