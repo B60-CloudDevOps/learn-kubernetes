@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stan's Robot Shop - Dashboard</title>
+    <style>
+        :root {
+            --bg-dark: #12151d;
+            --panel-bg: #1e222b;
+            --accent-blue: #00a6e0;
+            --accent-green: #25c974;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            margin: 0;
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar UI */
+        .sidebar {
+            width: 280px;
+            background-color: var(--panel-bg);
+            border-right: 1px solid #2d3139;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-blue);
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-item {
+            padding: 12px 16px;
+            border-radius: 8px;
+            color: var(--text-muted);
+            cursor: pointer;
+            margin-bottom: 5px;
+            transition: all 0.2s;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background-color: rgba(0, 166, 224, 0.1);
+            color: var(--text-main);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+
+        /* Product Catalog */
+        .catalog {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            background-color: var(--panel-bg);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .product-img {
+            width: 100px;
+            height: 100px;
+            background: #2d3139;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .btn {
+            background-color: var(--accent-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            width: 100%;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #0088b8;
+        }
+
+        /* Observability UI Panel */
+        .obs-panel {
+            background-color: var(--panel-bg);
+            border-radius: 12px;
+            padding: 20px;
+            height: fit-content;
+        }
+
+        .obs-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent-green);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .metric-bar {
+            background: #2d3139;
+            border-radius: 6px;
+            height: 8px;
+            margin: 10px 0 20px;
+            overflow: hidden;
+        }
+
+        .metric-fill {
+            height: 100%;
+            background-color: var(--accent-green);
+            width: 78%;
+            transition: width 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="logo">
+            🤖 Stan's Shop
+        </div>
+        <div class="nav-item active">🤖 Robot Catalog</div>
+        <div class="nav-item">🛒 Shopping Cart</div>
+        <div class="nav-item">📈 Telemetry</div>
+        <div class="nav-item">⚙️ Settings</div>
+    </div>
+
+    <div class="main-content">
+        <div class="catalog">
+            <div class="product-card">
+                <div class="product-img">🤖</div>
+                <h3>Robo-Helper</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Perfect for chores.</p>
+                <p><b>$299.99</b></p>
+                <button class="btn">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <div class="product-img">🦾</div>
+                <h3>Heavy-Lifter</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Industrial strength.</p>
+                <p><b>$599.99</b></p>
+                <button class="btn">Add to Cart</button>
+            </div>
+            <div class="product-card">
+                <div class="product-img">🧠</div>
+                <h3>AI-Companion</h3>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Learns as you speak.</p>
+                <p><b>$899.99</b></p>
+                <button class="btn">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="obs-panel">
+            <div class="obs-header">
+                <h3>Store Telemetry</h3>
+                <span class="status-dot"></span>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Simulated backend performance</p>
+            
+            <div style="display: flex; justify-content: space-between;">
+                <span>Response Time</span>
+                <span style="color: var(--accent-green);">120ms</span>
+            </div>
+            <div class="metric-bar"><div class="metric-fill" style="width: 25%;"></div></div>
+
+            <div style="display: flex; justify-content: space-between;">
+                <span>System Health</span>
+                <span style="color: var(--accent-green);">100%</span>
+            </div>
+            <div class="metric-bar"><div class="metric-fill" style="background: var(--accent-blue);"></div></div>
+
+            <div style="display: flex; justify-content: space-between;">
+                <span>Load Rate</span>
+                <span>450 req/min</span>
+            </div>
+            <div class="metric-bar"><div class="metric-fill" style="width: 78%;"></div></div>
+        </div>
+    </div>
+
+</body>
+</html>
