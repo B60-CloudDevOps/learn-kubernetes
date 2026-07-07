@@ -22,7 +22,18 @@ spec:
         image: public.ecr.aws/w2x3d9u7/roboshop-60/frontend:v13
         ports:
         - containerPort: 80
-
+        envFrom:
+        - configMapRef:
+            name: frontend-cm
+---
+# configMap for frontend component
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: frontend-cm
+data:
+  # property-like keys; each key maps to a simple value
+  COMPONENT: "frontend"
 ---
 
 # create LoadBalancer service ; We can make the service accessible from outside the cluster
