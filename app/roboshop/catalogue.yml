@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: catalogue
-        image: public.ecr.aws/w2x3d9u7/roboshop-60/catalogue:v13
+        image: public.ecr.aws/w2x3d9u7/roboshop-60/catalogue:v03
         ports:
         - containerPort: 8080
         envFrom:

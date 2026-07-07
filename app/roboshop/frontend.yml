@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: public.ecr.aws/w2x3d9u7/roboshop-60/frontend:v13
+        image: public.ecr.aws/w2x3d9u7/roboshop-60/frontend:v03
         ports:
         - containerPort: 80
         envFrom:
