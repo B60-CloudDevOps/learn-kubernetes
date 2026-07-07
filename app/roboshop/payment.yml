@@ -1,0 +1,80 @@
+# generate a deployment yaml for payment component# create deployment with nginx as image
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment
+  labels:
+    app: roboshop
+    tier: payment
+spec:
+  # modify replicas according to your case
+  replicas: 5
+  selector:
+    matchLabels:
+      tier: payment
+  template:
+    metadata:
+      labels:
+        tier: payment
+    spec:
+      containers:
+      - name: payment
+        image: public.ecr.aws/w2x3d9u7/roboshop-60/payment:v13
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: payment-cm
+
+---
+# configMap for payment component
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: payment-cm
+data:
+  # property-like keys; each key maps to a simple value
+  CART_HOST: "cart-svc:8080"
+  CART_PORT: "8080"
+  USER_HOST: "user-svc"
+  USER_PORT: "8080"
+  AMQP_HOST: "rabbitmq-test.robotshop.fun"
+  AMQP_USER: "roboshop"
+  AMQP_PASSWORD: "roboshop123"
+
+
+---
+
+# create LoadBalancer service ; We can make the service accessible from outside the cluster
+apiVersion: v1
+kind: Service
+metadata:
+  name: payment-svc
+spec:
+  selector:
+    tier: payment
+  ports:
+    - protocol: TCP
+      port: 8080                 # Service accepts the requests on this port
+      targetPort: 8080           # Target port in the pods
+
+---
+# HPA for the deployment payment 
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: payment-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: payment
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
