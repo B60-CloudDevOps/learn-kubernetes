@@ -1,0 +1,73 @@
+# generate a deployment yaml for catalogue component# create deployment with nginx as image
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalogue
+  labels:
+    app: roboshop
+    tier: catalogue
+spec:
+  # modify replicas according to your case
+  replicas: 5
+  selector:
+    matchLabels:
+      tier: catalogue
+  template:
+    metadata:
+      labels:
+        tier: catalogue
+    spec:
+      containers:
+      - name: catalogue
+        image: public.ecr.aws/w2x3d9u7/roboshop-60/catalogue:v13
+        ports:
+        - containerPort: 80
+        envFrom:
+        - configMapRef:
+            name: catalogue-cm
+
+---
+# configMap for catalogue component
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: catalogue-cm
+data:
+  # property-like keys; each key maps to a simple value
+  MONGO_URL: "mongodb://mongodb-test.robotshop.fun:27017/catalogue"
+
+---
+
+# create LoadBalancer service ; We can make the service accessible from outside the cluster
+apiVersion: v1
+kind: Service
+metadata:
+  name: catalogue-svc
+spec:
+  selector:
+    tier: catalogue
+  ports:
+    - protocol: TCP
+      port: 8080                 # Service accepts the requests on this port
+      targetPort: 8080           # Target port in the pods
+
+---
+# HPA for the deployment catalogue 
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: catalogue-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: catalogue
+  minReplicas: 2
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
