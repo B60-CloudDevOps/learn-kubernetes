@@ -40,7 +40,7 @@ data:
   USER_PORT: "8080"
   AMQP_HOST: "rabbitmq-test.robotshop.fun"
   AMQP_USER: "roboshop"
-  AMQP_PASSWORD: "roboshop123"
+  AMQP_PASS: "roboshop123"
 
 
 ---
