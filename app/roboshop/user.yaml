@@ -25,7 +25,6 @@ spec:
         envFrom:
         - configMapRef:
             name: user-cm
-
 ---
 # configMap for user component
 apiVersion: v1
@@ -36,7 +35,6 @@ data:
   # property-like keys; each key maps to a simple value
   REDIS_URL: "redis://redis-test.robotshop.fun:6379"
   MONGO_URL: "mongodb://mongodb-test.robotshop.fun:27017/users"
-
 ---
 # create LoadBalancer service ; We can make the service accessible from outside the cluster
 apiVersion: v1
@@ -50,7 +48,6 @@ spec:
     - protocol: TCP
       port: 8080                 # Service accepts the requests on this port
       targetPort: 8080           # Target port in the pods
-
 ---
 # HPA for the deployment user 
 apiVersion: autoscaling/v2

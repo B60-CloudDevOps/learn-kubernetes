@@ -42,9 +42,7 @@ data:
   AMQP_USER: "roboshop"
   AMQP_PASS: "roboshop123"
 
-
 ---
-
 # create LoadBalancer service ; We can make the service accessible from outside the cluster
 apiVersion: v1
 kind: Service
@@ -57,7 +55,6 @@ spec:
     - protocol: TCP
       port: 8080                 # Service accepts the requests on this port
       targetPort: 8080           # Target port in the pods
-
 ---
 # HPA for the deployment payment 
 apiVersion: autoscaling/v2
@@ -78,3 +75,4 @@ spec:
       target:
         type: Utilization
         averageUtilization: 70
+        
